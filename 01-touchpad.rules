@@ -1,0 +1,2 @@
+SUBSYSTEM=="input", KERNEL=="mouse[0-9]*", ATTRS{name}!="*TouchPad", ATTRS{name}!="*Stick", ACTION=="add", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/hrsat/.Xauthority", RUN+="/opt/Scripts/disable-touchpad.sh"
+SUBSYSTEM=="input", KERNEL=="mouse[0-9]*", ATTRS{name}!="*TouchPad", ATTRS{name}!="*Stick", ACTION=="remove", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/hrsat/.Xauthority", RUN+="/opt/Scripts/enable-touchpad.sh"

@@ -77,23 +77,24 @@ for_window [class="fcitx5-config-qt"] floating enable
 for_window [class="Gimp"] floating enable
 for_window [class="Xarchiver"] floating enable
 for_window [class="Lxappearance"] floating enable
-for_window [class="flameshot"] floating focus enable
+for_window [class="flameshot"] floating focus sticky enable
 for_window [class="(?i)wechat.exe"] floating enable,focus
 for_window [class="QjackCtl"] floating enable
 for_window [class="jetbrains-pycharm"] floating enable
 for_window [class="Gnome-system-monitor"] floating enable
-for_window [class="yesplaymusic"] floating enable
+for_window [class="yesplaymusic"] floating enable, move right 236px, move down 102px
 for_window [title="alsamixer"] floating enable
 for_window [class="Pcmanfm"] floating enable
 for_window [class="Blueman-manager"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="GParted"] floating enable
 for_window [class="Lightdm-settings"] floating enable
-for_window [class="Manjaro-hello"] floating enable
+for_window [title="Blender偏好设置"] floating enable, move right 600px, move down 72px
 for_window [class="Manjaro Settings Manager"] floating enable
 for_window [class="Nitrogen"] floating enable enable
 for_window [class="Pamac-manager"] floating enable
-for_window [class="qt5ct"] floating enable sticky enable
+for_window [class="qt5ct"] floating enable
+for_window [class="qt6ct"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -140,14 +141,14 @@ exec --no-startup-id qjackctl
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && /opt/Scripts/notify-volume.sh && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && /opt/Scripts/notify-volume.sh && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && /opt/Scripts/notify-volume.sh && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Backlight
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 2 && $refresh_i3status
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 2 && $refresh_i3status
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 2 && /opt/Scripts/notify-brightness.sh && $refresh_i3status
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 2 && /opt/Scripts/notify-brightness.sh &&$refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -159,9 +160,10 @@ bindsym $mod+Return exec --no-startup-id  alacritty
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show drun
-bindsym $mod+Tab exec --no-startup-id rofi -show window
-# A more modern dmenu replacement is rofi:
+bindsym $mod+d exec --no-startup-id rofi -show drun -terminal alacritty
+bindsym $mod+Tab exec --no-startup-id rofi -show window -terminal alacritty
+bindsym Ctrl+Shift+s exec --no-startup-id rofi -show ssh -terminal alacritty
+
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
@@ -205,8 +207,8 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+h split h;exec --no-startup-id  notify-send 'tile horizontally'
-bindsym $mod+v split v;exec --no-startup-id notify-send 'tile vertically'
+bindsym $mod+h split h;exec --no-startup-id notify-send '纵向分割'
+bindsym $mod+v split v;exec --no-startup-id notify-send '横向分割'
 bindsym $mod+q split toggle
 
 # enter fullscreen mode for the focused container
