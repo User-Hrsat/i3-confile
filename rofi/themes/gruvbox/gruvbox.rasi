@@ -9,6 +9,7 @@
 
 configuration {
   //font: "JetBrainsMono Nerd Font Medium 12";
+  drun-display-format: "{name}";
 
   drun {
     display-name: "";
@@ -68,6 +69,8 @@ prompt {
 
 listview {
   lines: 8;
+  columns: 3;
+  dynamic: true;
 }
 
 element {
@@ -75,6 +78,7 @@ element {
 }
 
 element-icon {
+  size: 24px;
   padding: 10px 10px;
 }
 

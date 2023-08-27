@@ -1,3 +1,5 @@
 ## i3wm confile
 
-### picom 闪烁
+- [ ] alacritty 使用体验优化
+- [ ] i3wm 操作熟悉
+- [ ] gtk4 主题管理

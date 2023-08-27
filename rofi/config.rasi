@@ -1,7 +1,7 @@
 configuration {
  modi: "window,drun,ssh,combi";
  combi-modi: "window,drun,ssh";
- font: "Cantarell Nerd Font 13";
+ font: "更纱黑体 UI SC 13";
  show-icons: true;
  icon-theme: "Papirus-Dark";
  drun-icon-theme: "Papirus-Dark";
